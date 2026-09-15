@@ -1,4 +1,4 @@
-# Project 4: DocChat — AI Document Question and Answer Chatbot
+# Project 1: DocChat — AI Document Question and Answer Chatbot
 
 **DocChat** is a production-quality, full-stack Retrieval-Augmented Generation (RAG) web application. Users upload any PDF document, and DocChat extracts, chunks, embeds, and indexes the text locally in ChromaDB. When a user asks a question, DocChat retrieves the top 4 most semantically similar chunks, constructs a strictly grounded context prompt, and streams token-by-token answers from Google's Gemini API alongside interactive source citations with page numbers.
 
