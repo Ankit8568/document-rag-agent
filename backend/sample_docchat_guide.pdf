@@ -1,0 +1,51 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 566 >>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+(DocChat Technical Documentation. DocChat is an advanced Retrieval-Augmented Generation chatbot system designed for documents. It uses sentence-transformers with the all-MiniLM-L6-v2 embedding model running 100 percent locally. ChromaDB is employed as the vector store for nearest neighbor semantic similarity queries. For language generation, DocChat connects to Google Gemini 1.5 Flash via streaming Server-Sent Events. Metadata such as document ID, file size, chunk counts, and page numbers are persisted in SQLite using SQLAlchemy.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 556 >>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+(Architecture Guidelines and Performance Metrics. The chunking algorithm splits text into segments of approximately 500 tokens with a 50-token overlap. This window guarantees semantic continuity between adjacent chunks. When a user asks a question, the top 4 most relevant chunks are retrieved from ChromaDB. The system strictly instructs Gemini 1.5 Flash to ground its responses exclusively in the retrieved chunks. If a question cannot be answered from the provided chunks, the chatbot will decline rather than hallucinate.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000807 00000 n 
+0000000933 00000 n 
+0000001539 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+1665
+%%EOF
