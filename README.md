@@ -1,46 +1,6 @@
-# Project 1: DocChat — AI Document Question and Answer Chatbot
+# Project 4: DocChat — AI Document Question and Answer Chatbot
 
 **DocChat** is a production-quality, full-stack Retrieval-Augmented Generation (RAG) web application. Users upload any PDF document, and DocChat extracts, chunks, embeds, and indexes the text locally in ChromaDB. When a user asks a question, DocChat retrieves the top 4 most semantically similar chunks, constructs a strictly grounded context prompt, and streams token-by-token answers from Google's Gemini API alongside interactive source citations with page numbers.
-
----
-
-## 🏛️ Architecture & Data Flow
-
-```mermaid
-flowchart TD
-    subgraph Client ["Frontend (React 18 + Vite + Tailwind CSS)"]
-        UI_Upload["Drag & Drop PDF Uploader"]
-        UI_Chat["Real-time Streaming Chat Window"]
-        UI_Sources["Source Citations Drawer (Top 4 Chunks)"]
-    end
-
-    subgraph Backend ["Backend (FastAPI + SQLAlchemy + Uvicorn)"]
-        API["FastAPI REST & SSE Endpoints"]
-        PDF["pypdf Page-by-Page Parser"]
-        Chunker["Sliding Window Chunker (~500 tokens, 50-token overlap)"]
-        Embedder["sentence-transformers (all-MiniLM-L6-v2) [Local]"]
-        Chroma["ChromaDB Vector Store (Persistent) [Local]"]
-        SQLite["SQLite DB (Document Metadata)"]
-        Gemini["Google Gemini API (Streaming LLM, with model fallback + retry)"]
-    end
-
-    UI_Upload -->|1. Upload PDF| API
-    API --> PDF
-    PDF --> Chunker
-    Chunker --> Embedder
-    Embedder -->|Store 384-dim Vectors + Page Meta| Chroma
-    API -->|Store Metadata (pages, chunks, size)| SQLite
-
-    UI_Chat -->|2. Natural Language Question| API
-    API --> Embedder
-    Embedder -->|Cosine Similarity Query| Chroma
-    Chroma -->|Top 4 Chunks + Page #s| API
-    API -->|Prompt with Grounded Context Chunks| Gemini
-    Gemini -->|3. SSE Token Stream| UI_Chat
-    API -->|4. Referenced Source Chunks| UI_Sources
-```
-
----
 
 ## ⚡ Tech Stack
 
@@ -81,7 +41,8 @@ This starts:
 ### 2. Manual Setup
 
 #### Backend Setup:
-
+```bash
+cd projects/04-document-rag-agent/backend
 
 # Install dependencies
 pip install -r requirements.txt
@@ -91,7 +52,8 @@ pip install -r requirements.txt
 copy .env.example .env
 
 # Run backend
-python main.py 
+python main.py
+```
 
 #### Frontend Setup:
 ```bash
